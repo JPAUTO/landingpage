@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J Paul Automotive | Honest, Reliable Auto Repair</title>
+  
+  <!-- Blade Runner-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background-color: #fff; color: #111; line-height: 1.6; }
+    header { background-color: #000; color: #fff; text-align: center; padding: 2rem 1rem 1rem; position: relative; }
+    .flags { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .flags img { height: 100px; } /* Increased flag size */
+    header h1 { font-family: 'Orbitron', sans-serif; color: #e10600; margin: 0; font-size: 2.5rem; display: inline-block; vertical-align: middle; }
+    header p { margin: 0.5rem 0 0; font-size: 1.2rem; }
+    section { padding: 2rem 1rem; max-width: 900px; margin: auto; }
+    .services { background-color: #f5f5f5; border-top: 4px solid #e10600; border-bottom: 4px solid #e10600; }
+    .services h2, .hours h2, .contact h2, .location h2 { text-align: center; color: #e10600; }
+    .services ul { list-style-type: none; padding: 0; max-width: 600px; margin: 1rem auto; }
+    .services li { background: #fff; border-left: 4px solid #e10600; padding: 0.75rem 1rem; margin: 0.5rem 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    .hours, .contact, .location { text-align: center; }
+    .hours p, .contact p, .location p { font-size: 1.1rem; }
+    .contact a { color: #e10600; font-weight: bold; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+    .map-container { width: 100%; height: 450px; margin: 1rem auto; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; }
+    .contact-form { max-width: 600px; margin: 1rem auto; padding: 1rem; background: #f9f9f9; border: 1px solid #ddd; }
+    .contact-form input, .contact-form textarea { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ccc; font-size: 1rem; }
+    .contact-form button { background-color: #e10600; color: #fff; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; }
+    .contact-form button:hover { background-color: #b80000; }
+    #form-status { text-align: center; margin-top: 0.5rem; font-weight: bold; }
+    footer { background-color: #000; color: #fff; text-align: center; padding: 1rem; font-size: 0.9rem; }
+    @media (max-width: 600px) { .flags img { height: 70px; } header h1 { font-size: 2rem; } section { padding: 1.5rem 1rem; } .map-container { height: 300px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="flags">
+      <img src="images/checkered-flag.png" alt="Checkered flag left" class="flag-left" />
+      <h1>J Paul Automotive</h1>
+      <img src="images/checkered-flag.png" alt="Checkered flag right" class="flag-right" />
+    </div>
+    <p>Reliable Repairs. Quality Service.</p>
+  </header>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>General Maintenance</li>
+      <li>A/C Service and Repair</li>
+      <li>New Tire Installation</li>
+      <li>Engine & Transmission Installation</li>
+      <li>Diagnostics</li>
+    </ul>
+  </section>
+
+  <section class="hours">
+    <h2>Business Hours</h2>
+    <p>Monday – Friday: 7:30 AM – 5:00 PM</p>
+  </section>
+
+  <section class="location">
+    <h2>Our Location</h2>
+    <p>2980 US 378, Conway, SC 29527</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.9022128566944!2d-79.11425252426282!3d33.84063237323736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x890011636570858d%3A0x4597b7510ae8c7b0!2sJ%20Paul%20Automotive!5e0!3m2!1sen!2sus!4v1762972889192!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p>📞 <a href="tel:843-397-9585">843-397-9585</a></p>
+
+    <div class="contact-form">
+      <form id="contact-form" action="https://formspree.io/f/mldaddol" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="_replyto" placeholder="Your Email" required />
+        <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="form-status"></p>
+    </div>
+
+    <p>We’re here to keep your vehicle running smoothly.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 J Paul Automotive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        status.textContent = "Message sent successfully!";
+        status.style.color = "green";
+        form.reset();
+      } else {
+        status.textContent = "Oops! There was a problem sending your message.";
+        status.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
